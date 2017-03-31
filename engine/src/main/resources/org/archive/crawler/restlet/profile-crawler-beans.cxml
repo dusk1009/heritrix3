@@ -147,6 +147,9 @@ http://example.example/example
      <!-- <property name="maxTransHops" value="2" /> -->
      <!-- <property name="maxSpeculativeHops" value="1" /> -->
     </bean>
+	
+	<bean class="org.archive.modules.deciderules.MyTestDecideRule" />
+	
     <!-- ...but REJECT those from a configurable (initially empty) set of REJECT SURTs... -->
     <bean class="org.archive.modules.deciderules.surt.SurtPrefixedDecideRule">
           <property name="decision" value="REJECT"/>
@@ -333,6 +336,9 @@ http://example.example/example
  </bean>
   
  <!-- DISPOSITION CHAIN -->
+   <bean id="filterByKeyword" class="org.archive.modules.KeywordsProcessor">
+    <property name="keywords" value="" />
+  </bean>
  <!-- first, processors are declared as top-level named beans  -->
  <bean id="warcWriter" class="org.archive.modules.writer.WARCWriterProcessor">
   <!-- <property name="compress" value="true" /> -->
@@ -374,6 +380,7 @@ http://example.example/example
  <bean id="dispositionProcessors" class="org.archive.modules.DispositionChain">
   <property name="processors">
    <list>
+    <ref bean="filterByKeyword"/>
     <!-- write to aggregate archival files... -->
     <ref bean="warcWriter"/>
     <!-- ...send each outlink candidate URI to CandidateChain, 
