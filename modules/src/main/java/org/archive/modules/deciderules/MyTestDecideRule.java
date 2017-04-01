@@ -15,11 +15,17 @@ public class MyTestDecideRule extends DecideRule {
 	protected DecideResult innerDecide(CrawlURI uri) {
 		String u = uri.getURI();
         //只抓取http://news.163.com/13/0922/10/网易新闻
-        if (u.startsWith("dns") || u.startsWith("DNS") || u.endsWith(".html")) {
-            if(u.contains("http://news.163.com")){
-                return DecideResult.ACCEPT;
-            }
+        if (u.startsWith("dns") || u.startsWith("DNS")) {
+            return DecideResult.ACCEPT;
         }
+        
+        if(u.endsWith(".html")){
+        	if(u.contains("autohome.com") || u.contains("news.bitauto.com") || u.contains("auto.sina.com.cn") || u.contains("auto.sohu.com")){
+        		 return DecideResult.ACCEPT;
+        	}
+        	return DecideResult.ACCEPT;
+        }
+        
         if( u.endsWith(".gif") || u.endsWith(".jpg") || u.endsWith(".jpeg")){
 			try {
 				if(KeywordsFilterUtil.contains(uri.getVia().getURI()))

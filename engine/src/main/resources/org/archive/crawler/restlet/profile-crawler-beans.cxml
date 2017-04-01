@@ -37,9 +37,9 @@
 # This Properties map is specified in the Java 'property list' text format
 # http://java.sun.com/javase/6/docs/api/java/util/Properties.html#load%28java.io.Reader%29
 
-metadata.operatorContactUrl=ENTER_AN_URL_WITH_YOUR_CONTACT_INFO_HERE_FOR_WEBMASTERS_AFFECTED_BY_YOUR_CRAWL
-metadata.jobName=basic
-metadata.description=Basic crawl starting with useful defaults
+metadata.operatorContactUrl=http://127.0.0.1
+metadata.jobName=testJob
+metadata.description=Basic testJob
 
 ##..more?..##
    </value>
@@ -54,7 +54,10 @@ metadata.description=Basic crawl starting with useful defaults
     <prop key="seeds.textSource.value">
 
 # URLS HERE
-http://example.example/example
+http://www.autohome.com.cn/all/#pvareaid=103449
+http://news.bitauto.com/
+http://auto.sina.com.cn/news/index.d.html
+http://auto.sohu.com/qichexinwen.shtml
 
     </prop>
    </props>
@@ -337,10 +340,10 @@ http://example.example/example
   
  <!-- DISPOSITION CHAIN -->
    <bean id="filterByKeyword" class="org.archive.modules.KeywordsProcessor">
-    <property name="keywords" value="" />
+    <property name="keywords" value="汽车保养 二手车,首付 汽车金融,汽车金融 汽车贷款,分期购车 新车分期,二手车 汽车金融,保险 违章" />
   </bean>
  <!-- first, processors are declared as top-level named beans  -->
- <bean id="warcWriter" class="org.archive.modules.writer.WARCWriterProcessor">
+ <bean id="warcWriter" class="org.archive.modules.writer.MirrorWriterProcessor">
   <!-- <property name="compress" value="true" /> -->
   <!-- <property name="prefix" value="IAH" /> -->
   <!-- <property name="suffix" value="${HOSTNAME}" /> -->
