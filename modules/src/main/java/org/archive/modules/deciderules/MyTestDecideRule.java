@@ -23,10 +23,10 @@ public class MyTestDecideRule extends DecideRule {
         	if(u.contains("autohome.com") || u.contains("news.bitauto.com") || u.contains("auto.sina.com.cn") || u.contains("auto.sohu.com")){
         		 return DecideResult.ACCEPT;
         	}
-        	return DecideResult.ACCEPT;
+        	return DecideResult.REJECT;
         }
         
-        if( u.endsWith(".gif") || u.endsWith(".jpg") || u.endsWith(".jpeg")){
+        if( u.endsWith(".gif") || u.endsWith(".jpg") || u.endsWith(".jpeg") || u.endsWith(".png")){
 			try {
 				if(KeywordsFilterUtil.contains(uri.getVia().getURI()))
 					return DecideResult.ACCEPT;

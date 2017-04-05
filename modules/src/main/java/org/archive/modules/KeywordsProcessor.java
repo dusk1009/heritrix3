@@ -78,8 +78,6 @@ public class KeywordsProcessor extends Processor {
 			r = recis.getMessageBodyReplayInputStream();
 			if(r.getContentSize() == 0)
 				return;
-			if(uri.contains("http://club.autohome.com.cn/bbs/thread-c-163-61744029-1.html"))
-				doc = null;
 			doc = Jsoup.parse(r, "gb2312", uri);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
