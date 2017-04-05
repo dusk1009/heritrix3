@@ -464,6 +464,15 @@ public class MirrorWriterProcessor extends Processor {
     private URIToFileReturn uriToFile(String baseDir, CrawlURI curi)
         throws AttributeNotFoundException, IOException {
         UURI uuri = curi.getUURI(); // Current URI.
+        String u = curi.getURI();
+        if(u.endsWith(".gif") || u.endsWith(".jpg") || u.endsWith(".jpeg") || u.endsWith(".png")){
+        	String oldPath = uuri.getPath();
+        	oldPath = oldPath.substring(oldPath.lastIndexOf("/"), oldPath.length());
+        	uuri = curi.getVia();
+        	String newPath = uuri.getPath();
+        	newPath = newPath.substring(0, newPath.lastIndexOf("/"));
+        	uuri.setPath(newPath + oldPath);
+        }
         String host = null;
         boolean hd = getCreateHostDirectory();
         if (hd) {
